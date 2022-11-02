@@ -18,11 +18,11 @@
 
 h1{
     font-size: 28px;
-    margin-top: 3%;
 }
 
 .bottom-container{
     margin-top: 116px; /*86px navbar*/
+    height: 100%
 }
 
 @media screen and (max-width: 576px) {
@@ -31,7 +31,7 @@ h1{
     }
 }
 
-.row {
+.login-register-row {
     justify-content: space-evenly;
 }
 
@@ -40,6 +40,17 @@ h1{
     height: 20px;
 }
 
-.polozka{
+.title{
     font-weight: bold;
+}
+
+.left-side-navbar{
+    position: fixed;
+    width: 230px;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.guitars {
+    margin-left: 240px;
 }
