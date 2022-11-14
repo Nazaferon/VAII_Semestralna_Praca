@@ -2,8 +2,8 @@
     width:130px;
 }
 
-.navbar{
-    background-color: black;
+.top-navbar{
+    border-bottom: 12px solid white;
 }
 
 .form-control{
@@ -16,18 +16,17 @@
     margin-right: 15px;
 }
 
-h1{
-    font-size: 28px;
-}
-
 .bottom-container{
-    margin-top: 116px; /*86px navbar*/
-    height: 100%
+    padding-top: 102px; /*90 navbar*/
 }
 
 @media screen and (max-width: 576px) {
+    .left-side-navbar{
+        padding-bottom: 240px !important;
+    }
+
     .bottom-container {
-        margin-top: 254px; /*224px navbar*/
+        padding-top: 240px; /*228 navbar*/
     }
 }
 
@@ -45,12 +44,27 @@ h1{
 }
 
 .left-side-navbar{
-    position: fixed;
     width: 230px;
-    overflow-y: auto;
-    height: 100vh;
+    padding-bottom: 102px;
+    position: fixed;
+    overflow-y:auto;
+    height: 100%;
+    flex-direction: column;
 }
 
 .guitars {
-    margin-left: 240px;
+    padding-left: 242px;
+}
+
+.card-body{
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.sorting-tabs{
+    font-size: 18px;
+}
+
+.button-1{
+    margin-top: 20px;
 }
