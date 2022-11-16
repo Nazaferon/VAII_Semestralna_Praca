@@ -3,9 +3,11 @@
 class item
 {
     public $id;
-    public $title;
+    public $brand;
+    public $model;
     public $category;
     public $price;
     public $amount;
     public $image;
+    public $description;
 }

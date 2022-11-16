@@ -10,6 +10,10 @@
     margin-right: 2%;
 }
 
+.description-form{
+    width: 30%;
+}
+
 .nav-link{
     white-space: nowrap;
     font-size: 20px;
@@ -22,11 +26,11 @@
 
 @media screen and (max-width: 576px) {
     .left-side-navbar{
-        padding-bottom: 240px !important;
+        padding-bottom: 175px !important;
     }
 
     .bottom-container {
-        padding-top: 240px; /*228 navbar*/
+        padding-top: 175px; /*228 navbar*/
     }
 }
 
@@ -34,9 +38,8 @@
     justify-content: space-evenly;
 }
 
-.bi{
-    width: 20px;
-    height: 20px;
+.action-logo{
+    font-size: 22px !important;
 }
 
 .title{
@@ -44,7 +47,7 @@
 }
 
 .left-side-navbar{
-    width: 230px;
+    width: 224px;
     padding-bottom: 102px;
     position: fixed;
     overflow-y:auto;
@@ -53,12 +56,8 @@
 }
 
 .guitars {
-    padding-left: 242px;
-}
-
-.card-body{
-    padding-bottom: 0px;
-    padding-top: 0px;
+    padding-left: 236px;
+    padding-right: 0;
 }
 
 .sorting-tabs{
@@ -67,4 +66,19 @@
 
 .button-1{
     margin-top: 20px;
+    margin-bottom: 1.5rem;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
+    z-index: 1;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
 }
