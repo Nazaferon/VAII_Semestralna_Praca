@@ -7,9 +7,9 @@ class Auth
     public function __construct()
     {
         if (isset($_POST["login"])) {
-            $this->login($_POST["login"]);
+            $this->login($_POST["login-email"], $_POST["login-password"]);
         }
-        if (isset($_GET["odhlas"])) {
+        if (isset($_GET["logout"])) {
             $this->logout();
         }
         if (isset($_SESSION["logged"])) {
@@ -17,7 +17,7 @@ class Auth
         }
     }
 
-    public function login($name)
+    public function login($email, $password)
     {
         if (1) {
             $this->isLogged = true;

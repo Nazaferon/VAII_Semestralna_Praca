@@ -26,7 +26,7 @@ $db = new DB();
     <?php
     /** @var Item[] $data */
     foreach ($db->getAllItems() as $item) {
-        if ($item->id == $_GET['id']) { ?>
+        if ($item->id == $_GET["id"]) { ?>
             <div class="container-fluid bottom-container">
                 <div class="row">
                     <div class="col-7">

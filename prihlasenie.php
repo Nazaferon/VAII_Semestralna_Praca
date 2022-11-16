@@ -28,12 +28,12 @@ $auth = new Auth();
                     <h1 class="mt-3">Prihlásiť</h1>
                     <form method="post" enctype="multipart/form-data">
                         <div class="mb-3 mt-3">
-                            <label for="login-email">Email:</label>
-                            <input type="email" class="form-control" id="login-email" placeholder="Zadajte email">
+                            <label>Email:</label>
+                            <input type="email" class="form-control" name="login-email" placeholder="Zadajte email">
                         </div>
                         <div class="mb-3">
-                            <label for="login-password">Heslo:</label>
-                            <input type="password" class="form-control" id="login-password" placeholder="Zadajte heslo">
+                            <label>Heslo:</label>
+                            <input type="password" class="form-control" name="login-password" placeholder="Zadajte heslo">
                         </div>
                         <div class="form-check mb-3">
                             <label class="form-check-label">
@@ -47,20 +47,20 @@ $auth = new Auth();
                     <h1 class="mt-3">Registrácia nového účtu v e-shope</h1>
                     <form method="post" enctype="multipart/form-data">
                         <div class="mb-3 mt-3">
-                            <label for="login-firstname">Meno:</label>
-                            <input type="text" class="form-control" id="login-firstname" placeholder="Zadajte meno">
+                            <label>Meno:</label>
+                            <input type="text" class="form-control" name="login-firstname" placeholder="Zadajte meno">
                         </div>
                         <div class="mb-3 mt-3">
-                            <label for="login-secondname">Priezvisko:</label>
-                            <input type="text" class="form-control" id="login-secondname" placeholder="Zadajte priezvisko">
+                            <label>Priezvisko:</label>
+                            <input type="text" class="form-control" name="login-secondname" placeholder="Zadajte priezvisko">
                         </div>
                         <div class="mb-3 mt-3">
-                            <label for="register-email">Email:</label>
-                            <input type="email" class="form-control" id="register-email" placeholder="Zadajte email">
+                            <label>Email:</label>
+                            <input type="email" class="form-control" name="register-email" placeholder="Zadajte email">
                         </div>
                         <div class="mb-3">
-                            <label for="register-password">Heslo:</label>
-                            <input type="password" class="form-control" id="register-password" placeholder="Zadajte heslo">
+                            <label>Heslo:</label>
+                            <input type="password" class="form-control" name="register-password" placeholder="Zadajte heslo">
                         </div>
                         <button type="submit" class="btn btn-primary mb-3">Pokračovať</button>
                     </form>
