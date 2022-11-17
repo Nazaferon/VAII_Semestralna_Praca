@@ -7,4 +7,4 @@ class User
     public $secondName;
     public $email;
     public $password;
-}
+    }

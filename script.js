@@ -1,3 +1,7 @@
+$(function(){
+    $("#navigation").load("navigacia.php");
+});
+
 $(window).scroll(function () {
     if ($(this).scrollTop() > 50) {
         $('#back-to-top').fadeIn();

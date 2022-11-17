@@ -18,6 +18,14 @@ class DB
         return $stm->fetchAll(PDO::FETCH_CLASS, Item::class);
     }
 
+    public function getItem($id) : Item
+    {
+        $stm = $this->pdo->prepare( "SELECT * FROM items WHERE id = ?");
+        $stm->execute([$id]);
+        /** @var Item result */
+        return $stm->fetchAll(PDO::FETCH_CLASS, Item::class)[0];
+    }
+
     public function storeItem(Item $item){
         $sql = "INSERT INTO  items (brand, model, category, price, image, amount, description) VALUES (?,?,?,?,?,?,?)";
         $stmt = $this->pdo->prepare($sql);
@@ -26,6 +34,10 @@ class DB
 
     public function removeItem($id)
     {
+        $result = $this->getItem($id);
+        if ($result->image) {
+            unlink($result->image);
+        }
         $sql = "DELETE FROM items WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id]);
@@ -40,10 +52,23 @@ class DB
         return $stm->fetchAll(PDO::FETCH_CLASS, User::class);
     }
 
+    public function getUser($id) : User
+    {
+        $stm = $this->pdo->prepare( "SELECT * FROM users WHERE id = ?");
+        $stm->execute([$id]);
+        return $stm->fetchAll(PDO::FETCH_CLASS, User::class)[0];
+    }
+
     public function storeUser(User $user){
-        $sql = "INSERT INTO  users (firstName, secondName, email, password) VALUES (?,?,?,?)";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$user->firstName, $user->secondName, $user->email, $user->password]);
+        if ($user->id) {
+            $sql = "UPDATE users SET firstName = ?, secondName = ?, email = ?, password = ? WHERE id = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$user->firstName, $user->secondName, $user->email, $user->password, $user->id]);
+        } else {
+            $sql = "INSERT INTO users (firstName, secondName, email, password) VALUES (?,?,?,?)";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$user->firstName, $user->secondName, $user->email, $user->password]);
+        }
     }
 
     public function removeUser($id)

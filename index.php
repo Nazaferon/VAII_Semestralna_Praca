@@ -1,9 +1,14 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include "DB.php";
 include "Item.php";
+include "Auth.php";
 $db = new DB();
+$auth = new Auth();
 ?>
+
 <!DOCTYPE html>
 <html lang="sk">
 <head>
@@ -14,11 +19,6 @@ $db = new DB();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    <script>
-        $(function(){
-            $("#navigation").load("navigacia.html");
-        });
-    </script>
     <script src="script.js"></script>
 </head>
 <body>
@@ -82,7 +82,7 @@ $db = new DB();
                 <div class="card">
                     <header class="card-header">
                         <h6 class="title">Cena:</h6>
-                        <div class="card-body" style="padding-bottom: 0px; padding-top: 0px;">
+                        <div class="card-body pb-0 pt-0">
                             <div class="row">
                                 <div class="col">
                                     <label>Od</label>
@@ -98,7 +98,7 @@ $db = new DB();
                 </div>
                 <div class="card">
                     <header class="card-header h-100">
-                        <div class="card-body" style="padding-bottom: 0px; padding-top: 0px;">
+                        <div class="card-body pb-0 pt-0">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="Check1">
                                 <label class="custom-control-label" for="Check1">Skladom</label>
@@ -165,9 +165,8 @@ $db = new DB();
                     </div>
                 <?php } ?>
             </div>
-
-            <button type="button" class="btn button-1 btn-primary rounded-pill mx-auto d-block">
-                <div style="font-size: 20px">Načítať ďalšie produkty</div>
+            <button type="button" class="btn button-1 btn-primary rounded-pill mx-auto d-block" style="font-size: 20px;">
+                Načítať ďalšie produkty
             </button>
         </div>
     </div>

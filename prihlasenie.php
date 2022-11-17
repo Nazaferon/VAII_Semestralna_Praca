@@ -1,8 +1,21 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (isset($_SESSION["isLogged"])) {
+    if ($_SESSION["isLogged"] == false) {
+        unset($_SESSION["isLogged"]);
+    }
+}
+if (isset($_SESSION["isRegistered"])) {
+    unset($_SESSION["isRegistered"]);
+}
+include "DB.php";
 include "Auth.php";
-
+$db = new DB();
 $auth = new Auth();
 ?>
+
 <!DOCTYPE html>
 <html lang="sk">
 <head>
@@ -13,16 +26,11 @@ $auth = new Auth();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    <script>
-        $(function(){
-            $("#navigacia").load("navigacia.html");
-        });
-    </script>
+    <script src="script.js"></script>
 </head>
 <body>
-    <div id="navigacia"></div>
+    <div id="navigation"></div>
     <div class="container-fluid bottom-container">
-        <?php if (!$auth->isLogged) { ?>
             <div class="row login-register-row">
                 <div class="col-5 border">
                     <h1 class="mt-3">Prihlásiť</h1>
@@ -31,16 +39,16 @@ $auth = new Auth();
                             <label>Email:</label>
                             <input type="email" class="form-control" name="login-email" placeholder="Zadajte email">
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 mt-3">
                             <label>Heslo:</label>
                             <input type="password" class="form-control" name="login-password" placeholder="Zadajte heslo">
                         </div>
-                        <div class="form-check mb-3">
+                        <div class="form-check mb-3 mt-3">
                             <label class="form-check-label">
                                 <input class="form-check-input" type="checkbox" name="remember">Zapamätať si ma
                             </label>
                         </div>
-                        <button type="submit" class="btn btn-primary mb-4">Prihlásiť</button>
+                        <button type="submit" class="btn btn-primary">Prihlásiť</button>
                     </form>
                 </div>
                 <div class="col-5 border">
@@ -48,28 +56,35 @@ $auth = new Auth();
                     <form method="post" enctype="multipart/form-data">
                         <div class="mb-3 mt-3">
                             <label>Meno:</label>
-                            <input type="text" class="form-control" name="login-firstname" placeholder="Zadajte meno">
+                            <input type="text" class="form-control" name="register-firstname" placeholder="Zadajte meno">
                         </div>
                         <div class="mb-3 mt-3">
                             <label>Priezvisko:</label>
-                            <input type="text" class="form-control" name="login-secondname" placeholder="Zadajte priezvisko">
+                            <input type="text" class="form-control" name="register-secondname" placeholder="Zadajte priezvisko">
                         </div>
                         <div class="mb-3 mt-3">
                             <label>Email:</label>
                             <input type="email" class="form-control" name="register-email" placeholder="Zadajte email">
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 mt-3">
                             <label>Heslo:</label>
                             <input type="password" class="form-control" name="register-password" placeholder="Zadajte heslo">
                         </div>
-                        <button type="submit" class="btn btn-primary mb-3">Pokračovať</button>
+                        <button type="submit" class="btn btn-primary mb-3">Registrovať</button>
                     </form>
                 </div>
             </div>
-        <?php }
-        else { ?>
-
-        <?php } ?>
+            <?php if (isset($_SESSION["isRegistered"])) {
+                if ($_SESSION["isRegistered"]) { ?>
+                    <h3 class="text-success text-center pt-3">Účet bol úspešne zaregistrovaný</h3>
+            <?php } else { ?>
+                    <h3 class="text-danger text-center pt-3">Účet nebol zaregistrovaný</h3>
+            <?php }
+            } if (isset($_SESSION["isLogged"])) {
+                if (!$_SESSION["isLogged"]) { ?>
+                    <h3 class="text-danger text-center pt-3">Zadali ste nesprávne údaje!</h3>
+                <?php }
+            } ?>
     </div>
 </body>
 </html>
